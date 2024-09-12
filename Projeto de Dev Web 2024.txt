@@ -1,0 +1,21 @@
+Projeto de Dev Web 2024
+
+Tema: PingaPlay
+
+Paleta de Cores: https://coolors.co/780000-c1121f-fdf0d5-003049-669bbc
+
+Telas:
+1. Tela de criação de usuários: Permite a criação de novos usuários, edição de perfil, etc.
+2. Tela de Ranking: Mostra a classificação atual dos jogadores.
+3. Tela de Campeonatos: Exibe campeonatos disponíveis, permite inscrição, visualização dos resultados e detalhes.
+4. Tela de Partidas: Agenda partidas, visualiza partidas passadas, resultados e estatísticas.
+5. Tela de Conquistas: Uma página dedicada a conquistas e troféus. Nela, os jogadores podem desbloquear prêmios e distintivos por alcançar certos marcos, como “Primeira Vitória”, “10 Partidas Consecutivas”, “Campeão do Mês”, etc.
+6. Tela de login
+
+Data de entrega: 25/09/2024
+
+----------------------------------------
+
+2 dias pra cada tela
+12/09/24 - Tela de login
+

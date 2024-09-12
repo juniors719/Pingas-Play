@@ -1,0 +1,24 @@
+Briefing da Tela de Login
+
+
+Objetivo: A tela de login é a porta de entrada para o sistema. Ela deve permitir que o usuário acesse sua conta de forma segura e intuitiva, além de oferecer opções para recuperar a senha ou se registrar, caso ainda não tenha uma conta.
+
+Elementos da Tela:
+
+
+Nome do Sistema:
+Posicionado no topo da tela, centralizado, com o nome do sistema (ex.: "PingaPro").
+
+Campo de Login:
+E-mail: Campo de entrada de texto para o usuário inserir seu e-mail ou nome de usuário.
+Senha: Campo de entrada de texto para a senha, com opção de mostrar/ocultar a senha (ícone de olho).
+
+Botão de Acesso:
+Um botão grande e destacado com o texto “Entrar” abaixo dos campos de login.
+
+Opção de Registro:
+Um texto curto “Ainda não tem uma conta? Cadastre-se aqui!” com um link para a tela de registro, posicionado abaixo da opção de recuperação de senha.
+
+Feedback de Erro:
+Mensagem de erro em vermelho que aparece abaixo dos campos de entrada, caso o usuário insira credenciais incorretas ou deixe algum campo em branco.
+
