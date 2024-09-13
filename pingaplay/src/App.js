@@ -15,6 +15,7 @@ import CriarUsuario from "./components/usuario/CriarUsuario";
 import AdicionarDados from "./components/usuario/AdicionarDados";
 import Home from "./components/home/Home";
 import PrivateRoute from "./components/PrivateRoute"; // Importe o componente "PrivateRoute"
+import Scoreboard from "./components/placar/ScoreBoard";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -48,6 +49,7 @@ function App() {
                         user ? <AdicionarDados /> : <Navigate to="/login" />
                     }
                 />
+                <Route path="/criar-usuario" element={<CriarUsuario />} />
                 <Route
                     path="/home"
                     element={
