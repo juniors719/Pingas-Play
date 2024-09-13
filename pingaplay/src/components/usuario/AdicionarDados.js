@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { db, auth } from "../../utils/FirebaseConfig"; // Importa instância do Firestore e de autenticação
 import { collection, addDoc } from "firebase/firestore"; // Importa funções do Firestore
+import { useNavigate } from "react-router-dom";
 
 const AdicionarDados = () => {
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
     const [dataNascimento, setDataNascimento] = useState("");
-    const [telefone, setTelefone] = useState("");
     const [sexo, setSexo] = useState("masculino"); // Inicializando como "masculino"
     const [erro, setErro] = useState("");
     const [sucesso, setSucesso] = useState("");
+    const navigate = useNavigate(); // Instancie o hook de navegação
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,6 +45,7 @@ const AdicionarDados = () => {
 
             setSucesso("Dados salvos com sucesso!");
             setErro("");
+            navigate("/home"); // Redireciona para a página inicial
         } catch (error) {
             console.error("Erro ao salvar dados: ", error);
             setErro("Erro ao salvar dados. Tente novamente.");
