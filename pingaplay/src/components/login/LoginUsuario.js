@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { auth } from "../../utils/FirebaseConfig"; // Importe a instância de autenticação
 import { signInWithEmailAndPassword } from "firebase/auth"; // Importe o método de login
+import { useNavigate } from "react-router-dom"; // Importe o hook de navegação
 
 const LoginUsuario = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
+    const navigate = useNavigate(); // Instancie o hook de navegação
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -18,6 +20,7 @@ const LoginUsuario = () => {
                 senha
             );
             console.log("Usuário logado com sucesso:", userCredential.user);
+            navigate("/home");
         } catch (error) {
             console.error("Erro ao fazer login:", error);
             setErro("Erro ao fazer login. Verifique suas credenciais.");

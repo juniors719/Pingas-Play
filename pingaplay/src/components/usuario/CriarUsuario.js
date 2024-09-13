@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { auth } from "../../utils/FirebaseConfig"; // Importe a instância de autenticação
 import { createUserWithEmailAndPassword } from "firebase/auth"; // Importe o método de criação de usuário
+import { useNavigate } from "react-router-dom"; // Importe o hook de navegação
 
 const CriarUsuario = () => {
-    const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
+    const navigate = useNavigate(); // Instancie o hook de navegação
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,6 +20,7 @@ const CriarUsuario = () => {
                 senha
             );
             console.log("Usuário criado com sucesso: ", userCredential);
+            navigate("/adicionar-dados"); // Redirecione para a página de adicionar
         } catch (error) {
             console.error("Erro ao criar usuário: ", error);
             setErro(error.message);
@@ -34,15 +36,6 @@ const CriarUsuario = () => {
                 id="form-createUser"
                 onSubmit={handleSubmit}
             >
-                <label className="form-label">Nome:</label>
-                <input
-                    type="text"
-                    name="name"
-                    className="form-control"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                />
-
                 <label className="form-label">Email:</label>
                 <input
                     type="email"
