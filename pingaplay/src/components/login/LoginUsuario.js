@@ -3,6 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { auth } from "../../utils/FirebaseConfig"; // Importe a instância de autenticação
 import { signInWithEmailAndPassword } from "firebase/auth"; // Importe o método de login
 import { useNavigate } from "react-router-dom"; // Importe o hook de navegação
+import ImagemLogin from "./ImagemLogin.png";
+
+import "./LoginUsuario.css"
 
 const LoginUsuario = () => {
     const [email, setEmail] = useState("");
@@ -36,50 +39,48 @@ const LoginUsuario = () => {
     };
 
     return (
-        <div id="login-content">
-            <h2>Login</h2>
-            {erro && <p style={{ color: "red" }}>{erro}</p>}
-            <form
-                className="form-content"
-                id="form-loginUser"
-                onSubmit={handleLogin}
-            >
-                <label className="form-label">Email:</label>
-                <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+        <div id="login-page">
+            {/* Lado esquerdo com a imagem */}
+            <div id="login-image">
+                <img src={ImagemLogin} alt="Login illustration" />
+            </div>
 
-                <label className="form-label">Senha:</label>
-                <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
-                />
+            {/* Lado direito com o formulário */}
+            <div id="login-content">
+                <h2>Login</h2>
+                {erro && <p>{erro}</p>}
+                <form className="form-content" id="form-loginUser" onSubmit={handleLogin}>
+                    <label className="form-label">Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
-                <button type="submit" className="btn btn-primary">
-                    Login
-                </button>
+                    <label className="form-label">Senha:</label>
+                    <input
+                        type="password"
+                        name="password"
+                        className="form-control"
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
+                    />
 
-                <button
-                    onClick = {goToCreateUser}
-                    className="btn btn-primary"
-                >
-                    Criar usuário
-                </button>
+                    <button type="submit" className="btn btn-primary">Login</button>
 
-                <button
-                    onClick={handleResetPassword}
-                    className="btn btn-link mt-3"
-                >
-                    Redefinir senha
-                </button>
-            </form>
+                    <button onClick={goToCreateUser} className="btn btn-primary">
+                        Criar usuário
+                    </button>
+
+                    <div className="forgot-password">
+                        <span>Esqueceu a senha?</span>
+
+                        <button onClick={handleResetPassword} className="btn btn-link">Redefinir senha</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
