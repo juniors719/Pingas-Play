@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Scoreboard.css"; // Arquivo de estilo atualizado
+import "./ScoreBoard.css"; // Arquivo de estilo atualizado
 
 const Scoreboard = () => {
     const [player1Score, setPlayer1Score] = useState(0);
@@ -8,7 +8,7 @@ const Scoreboard = () => {
     const [player2Name, setPlayer2Name] = useState("");
     const [isGameStarted, setIsGameStarted] = useState(false);
     const [isWarmingUp, setIsWarmingUp] = useState(false);
-    const [warmUpTime, setWarmUpTime] = useState(5);
+    const [warmUpTime, setWarmUpTime] = useState(3); // lembrar de ajustar o tempo de aquecimento
     const [isGameOver, setIsGameOver] = useState(false);
     const maxScore = 11;
 
@@ -60,7 +60,7 @@ const Scoreboard = () => {
         setIsGameStarted(false);
         setIsWarmingUp(false);
         setIsGameOver(false);
-        setWarmUpTime(5);
+        setWarmUpTime(3); // lembrar de ajustar o tempo de aquecimento
     };
 
     return (
@@ -83,6 +83,23 @@ const Scoreboard = () => {
                             className="form-control"
                             placeholder="Nome do Jogador 2"
                             onChange={(e) => setPlayer2Name(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Escolha o tempo de aquecimento (em minutos)"
+                            onChange={(e) => {
+                                if (!isNaN(e.target.value)) {
+                                    setWarmUpTime(e.target.value * 60)
+                                } else {
+                                    setIsGameStarted(false);
+                                    alert("Por favor, insira um número válido.");
+
+                                }
+                            }
+                            }
                         />
                     </div>
                     <button className="btn btn-primary" onClick={startGame}>
@@ -112,7 +129,7 @@ const Scoreboard = () => {
                         <h3 className="score">{player1Score}</h3>
                         <div className="controls">
                             <button
-                                className="btn btn-success"
+                                className="btn btn-light"
                                 onClick={() =>
                                     incrementScore(
                                         setPlayer1Score,
@@ -124,7 +141,7 @@ const Scoreboard = () => {
                                 +
                             </button>
                             <button
-                                className="btn btn-danger"
+                                className="btn btn-light"
                                 onClick={() =>
                                     decrementScore(
                                         setPlayer1Score,
@@ -141,7 +158,7 @@ const Scoreboard = () => {
                         <h3 className="score">{player2Score}</h3>
                         <div className="controls">
                             <button
-                                className="btn btn-success"
+                                className="btn btn-light"
                                 onClick={() =>
                                     incrementScore(
                                         setPlayer2Score,
@@ -153,7 +170,7 @@ const Scoreboard = () => {
                                 +
                             </button>
                             <button
-                                className="btn btn-danger"
+                                className="btn btn-light"
                                 onClick={() =>
                                     decrementScore(
                                         setPlayer2Score,
