@@ -27,6 +27,14 @@ const LoginUsuario = () => {
         }
     };
 
+    const goToCreateUser = () => {
+        navigate("/criar-usuario");
+    };
+
+    const handleResetPassword = () => {
+        alert("Senha redefinida");
+    };
+
     return (
         <div id="login-content">
             <h2>Login</h2>
@@ -56,6 +64,20 @@ const LoginUsuario = () => {
 
                 <button type="submit" className="btn btn-primary">
                     Login
+                </button>
+
+                <button
+                    onClick = {goToCreateUser}
+                    className="btn btn-primary"
+                >
+                    Criar usuário
+                </button>
+
+                <button
+                    onClick={handleResetPassword}
+                    className="btn btn-link mt-3"
+                >
+                    Redefinir senha
                 </button>
             </form>
         </div>
