@@ -16,6 +16,7 @@ import AdicionarDados from "./components/usuario/AdicionarDados";
 import Home from "./components/home/Home";
 import PrivateRoute from "./components/PrivateRoute"; // Importe o componente "PrivateRoute"
 import Scoreboard from "./components/placar/ScoreBoard";
+import "./components/placar/ScoreBoard.css";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -36,6 +37,10 @@ function App() {
     }
 
     return (
+        <Scoreboard/>
+    )
+
+    /* return (
         <Router>
             <Routes>
                 <Route
@@ -62,7 +67,7 @@ function App() {
                 />
             </Routes>
         </Router>
-    );
+    ); */
 }
 
 export default App;
