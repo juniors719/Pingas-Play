@@ -36,11 +36,9 @@ function App() {
         return <p>Carregando...</p>; // Mostra um carregamento até que o estado de autenticação seja resolvido
     }
 
-    return (
-        <Scoreboard/>
-    )
+    // return <Scoreboard />;
 
-    /* return (
+    return (
         <Router>
             <Routes>
                 <Route
@@ -67,7 +65,7 @@ function App() {
                 />
             </Routes>
         </Router>
-    ); */
+    );
 }
 
 export default App;

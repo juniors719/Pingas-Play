@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth"; // Importe o método
 import { useNavigate } from "react-router-dom"; // Importe o hook de navegação
 import ImagemLogin from "./ImagemLogin.png";
 
-import "./LoginUsuario.css"
+import "./LoginUsuario.css";
 
 const LoginUsuario = () => {
     const [email, setEmail] = useState("");
@@ -49,7 +49,11 @@ const LoginUsuario = () => {
             <div id="login-content">
                 <h2>Login</h2>
                 {erro && <p>{erro}</p>}
-                <form className="form-content" id="form-loginUser" onSubmit={handleLogin}>
+                <form
+                    className="form-content"
+                    id="form-loginUser"
+                    onSubmit={handleLogin}
+                >
                     <label className="form-label">Email:</label>
                     <input
                         type="email"
@@ -68,16 +72,26 @@ const LoginUsuario = () => {
                         onChange={(e) => setSenha(e.target.value)}
                     />
 
-                    <button type="submit" className="btn btn-primary">Login</button>
+                    <button type="submit" className="btn btn-primary">
+                        Login
+                    </button>
 
-                    <button onClick={goToCreateUser} className="btn btn-primary">
+                    <button
+                        onClick={goToCreateUser}
+                        className="btn btn-primary"
+                    >
                         Criar conta
                     </button>
 
                     <div className="forgot-password">
                         <span>Esqueceu a senha?</span>
 
-                        <button onClick={handleResetPassword} className="btn btn-link">Redefinir senha</button>
+                        <button
+                            onClick={handleResetPassword}
+                            className="btn btn-link"
+                        >
+                            Redefinir senha
+                        </button>
                     </div>
                 </form>
             </div>
