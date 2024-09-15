@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./ScoreBoard.css";
 
 const Scoreboard = () => {
     const [player1Score, setPlayer1Score] = useState(0);
@@ -65,7 +66,7 @@ const Scoreboard = () => {
     };
 
     return (
-        <div className="container text-center">
+        <div className="container text-center scoreboard">
             <h1>Placar de Tênis de Mesa</h1>
 
             {!isGameStarted && !isWarmingUp ? (
@@ -109,11 +110,11 @@ const Scoreboard = () => {
             ) : (
                 <div>
                     <div className="row my-4">
-                        <div className="col">
+                        <div className="col player1scoreboard">
                             <h2>{player1Name}</h2>
                             <h3>{player1Score}</h3>
                             <button
-                                className="btn btn-success mx-1"
+                                className="btn btn-success mx-1 inc-button"
                                 onClick={() =>
                                     incrementScore(
                                         setPlayer1Score,
@@ -125,7 +126,7 @@ const Scoreboard = () => {
                                 +
                             </button>
                             <button
-                                className="btn btn-danger mx-1"
+                                className="btn btn-danger mx-1 dec-button"
                                 onClick={() =>
                                     decrementScore(
                                         setPlayer1Score,
@@ -136,11 +137,11 @@ const Scoreboard = () => {
                                 -
                             </button>
                         </div>
-                        <div className="col">
+                        <div className="col player2scoreboard">
                             <h2>{player2Name}</h2>
                             <h3>{player2Score}</h3>
                             <button
-                                className="btn btn-success mx-1"
+                                className="btn btn-success mx-1 inc-button"
                                 onClick={() =>
                                     incrementScore(
                                         setPlayer2Score,
@@ -152,7 +153,7 @@ const Scoreboard = () => {
                                 +
                             </button>
                             <button
-                                className="btn btn-danger mx-1"
+                                className="btn btn-danger mx-1 dec-button"
                                 onClick={() =>
                                     decrementScore(
                                         setPlayer2Score,

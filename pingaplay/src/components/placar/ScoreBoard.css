@@ -1,0 +1,51 @@
+.scoreboard {
+    width: 90vw;
+    height: 90vh;
+    margin: 0 auto;
+    background-color: #FDF0D5;
+}
+
+.scoreboard h1 {
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+    padding: 0.5em;
+}
+
+.player1scoreboard, .player2scoreboard {
+    width: 45%;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+}   
+
+.player1scoreboard {
+    background-color: #003049;
+    padding: 20px;
+}
+
+.player2scoreboard {
+    background-color: #C1121F;
+    padding: 20px;
+}
+
+.inc-button {
+    width: 100%;
+    height: 50px;
+    background-color: green;
+    color: white;
+    font-size: 1.5em;
+    border: none;
+    cursor: pointer;
+}
+
+.dec-button {
+    width: 100%;
+    height: 50px;
+    background-color: red;
+    color: white;
+    font-size: 1.5em;
+    border: none;
+    cursor: pointer;
+}
