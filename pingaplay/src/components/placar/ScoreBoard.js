@@ -89,7 +89,7 @@ const Scoreboard = () => {
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Escolha o tempo de aquecimento (em minutos)"
+                            placeholder="Aquecimento (min)"
                             onChange={(e) => {
                                 if (!isNaN(e.target.value)) {
                                     setWarmUpTime(e.target.value * 60)
