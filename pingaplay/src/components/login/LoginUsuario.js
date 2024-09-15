@@ -71,7 +71,7 @@ const LoginUsuario = () => {
                     <button type="submit" className="btn btn-primary">Login</button>
 
                     <button onClick={goToCreateUser} className="btn btn-primary">
-                        Criar usuário
+                        Criar conta
                     </button>
 
                     <div className="forgot-password">
