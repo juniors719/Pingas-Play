@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./ScoreBoard.css";
 
 const Scoreboard = () => {
     const [player1Score, setPlayer1Score] = useState(0);
@@ -8,8 +9,8 @@ const Scoreboard = () => {
     const [player2Name, setPlayer2Name] = useState("");
     const [isGameStarted, setIsGameStarted] = useState(false);
     const [isWarmingUp, setIsWarmingUp] = useState(false);
-    const [warmUpTime, setWarmUpTime] = useState(5); // Tempo de aquecimento em segundos
-    const [isGameOver, setIsGameOver] = useState(false); // Estado do jogo terminado
+    const [warmUpTime, setWarmUpTime] = useState(3); // lembrar de ajustar o tempo de aquecimento
+    const [isGameOver, setIsGameOver] = useState(false);
     const maxScore = 11;
 
     // Função para iniciar o aquecimento e, após ele, começar o jogo
@@ -37,7 +38,6 @@ const Scoreboard = () => {
         const newScore = score + 1;
         const lead = Math.abs(newScore - opponentScore);
 
-        // Verificar se o jogador venceu
         if (newScore >= maxScore && lead >= 2) {
             setIsGameOver(true);
         } else {
@@ -61,15 +61,15 @@ const Scoreboard = () => {
         setIsGameStarted(false);
         setIsWarmingUp(false);
         setIsGameOver(false);
-        setWarmUpTime(5);
+        setWarmUpTime(3); // lembrar de ajustar o tempo de aquecimento
     };
 
     return (
-        <div className="container text-center">
-            <h1>Placar de Tênis de Mesa</h1>
+        <div className="container">
+            <h1 className="title">Placar Pingas Play</h1>
 
             {!isGameStarted && !isWarmingUp ? (
-                <div>
+                <div className="name-input">
                     <div className="mb-3">
                         <input
                             type="text"
@@ -84,6 +84,23 @@ const Scoreboard = () => {
                             className="form-control"
                             placeholder="Nome do Jogador 2"
                             onChange={(e) => setPlayer2Name(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Aquecimento (min)"
+                            onChange={(e) => {
+                                if (!isNaN(e.target.value)) {
+                                    setWarmUpTime(e.target.value * 60);
+                                } else {
+                                    setIsGameStarted(false);
+                                    alert(
+                                        "Por favor, insira um número válido."
+                                    );
+                                }
+                            }}
                         />
                     </div>
                     <button className="btn btn-primary" onClick={startGame}>
@@ -107,13 +124,13 @@ const Scoreboard = () => {
                     </button>
                 </div>
             ) : (
-                <div>
-                    <div className="row my-4">
-                        <div className="col">
-                            <h2>{player1Name}</h2>
-                            <h3>{player1Score}</h3>
+                <div className="scoreboard">
+                    <div className="player player1">
+                        <h2>{player1Name || "Player 1"}</h2>
+                        <h3 className="score">{player1Score}</h3>
+                        <div className="controls">
                             <button
-                                className="btn btn-success mx-1"
+                                className="btn btn-light"
                                 onClick={() =>
                                     incrementScore(
                                         setPlayer1Score,
@@ -125,7 +142,7 @@ const Scoreboard = () => {
                                 +
                             </button>
                             <button
-                                className="btn btn-danger mx-1"
+                                className="btn btn-light"
                                 onClick={() =>
                                     decrementScore(
                                         setPlayer1Score,
@@ -136,11 +153,13 @@ const Scoreboard = () => {
                                 -
                             </button>
                         </div>
-                        <div className="col">
-                            <h2>{player2Name}</h2>
-                            <h3>{player2Score}</h3>
+                    </div>
+                    <div className="player player2">
+                        <h2>{player2Name || "Player 2"}</h2>
+                        <h3 className="score">{player2Score}</h3>
+                        <div className="controls">
                             <button
-                                className="btn btn-success mx-1"
+                                className="btn btn-light"
                                 onClick={() =>
                                     incrementScore(
                                         setPlayer2Score,
@@ -152,7 +171,7 @@ const Scoreboard = () => {
                                 +
                             </button>
                             <button
-                                className="btn btn-danger mx-1"
+                                className="btn btn-light"
                                 onClick={() =>
                                     decrementScore(
                                         setPlayer2Score,
@@ -164,7 +183,10 @@ const Scoreboard = () => {
                             </button>
                         </div>
                     </div>
-                    <button className="btn btn-warning" onClick={resetGame}>
+                    <button
+                        className="btn btn-warning reset-button"
+                        onClick={resetGame}
+                    >
                         Resetar
                     </button>
                 </div>

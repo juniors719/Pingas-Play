@@ -16,6 +16,7 @@ import AdicionarDados from "./components/usuario/AdicionarDados";
 import Home from "./components/home/Home";
 import PrivateRoute from "./components/PrivateRoute"; // Importe o componente "PrivateRoute"
 import Scoreboard from "./components/placar/ScoreBoard";
+import "./components/placar/ScoreBoard.css";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -34,6 +35,8 @@ function App() {
     if (loading) {
         return <p>Carregando...</p>; // Mostra um carregamento até que o estado de autenticação seja resolvido
     }
+
+    // return <Scoreboard />;
 
     return (
         <Router>
