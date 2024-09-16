@@ -44,7 +44,7 @@ html, body {
     justify-content: center;
 }
 
-h2 {
+#login-title {
     margin-bottom: 20px;
     color: #343a40;
     text-align: center;

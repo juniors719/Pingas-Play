@@ -8,8 +8,9 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #000000;
+    background-color: #2886dd;
     color: white;
+    max-width: 100%;
 }
 
 .title {
@@ -20,6 +21,8 @@
 .name-input {
     width: 300px;
 }
+
+
 
 .scoreboard {
     display: flex;
