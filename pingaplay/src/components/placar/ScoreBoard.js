@@ -161,6 +161,17 @@ const Scoreboard = () => {
                             <button
                                 className="btn btn-light"
                                 onClick={() =>
+                                    decrementScore(
+                                        setPlayer2Score,
+                                        player2Score
+                                    )
+                                }
+                            >
+                                -
+                            </button>
+                            <button
+                                className="btn btn-light"
+                                onClick={() =>
                                     incrementScore(
                                         setPlayer2Score,
                                         player2Score,
@@ -169,17 +180,6 @@ const Scoreboard = () => {
                                 }
                             >
                                 +
-                            </button>
-                            <button
-                                className="btn btn-light"
-                                onClick={() =>
-                                    decrementScore(
-                                        setPlayer2Score,
-                                        player2Score
-                                    )
-                                }
-                            >
-                                -
                             </button>
                         </div>
                     </div>
