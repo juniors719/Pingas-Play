@@ -63,6 +63,16 @@ function App() {
                         )
                     }
                 />
+                <Route
+                    path="/placar"
+                    element={
+                        user ? (
+                            <PrivateRoute>{<Scoreboard />}</PrivateRoute>
+                        ) : (
+                            <Navigate to="/login" />
+                        )
+                    }
+                />
             </Routes>
         </Router>
     );
