@@ -1,3 +1,4 @@
+import "./AdicionarDados.css"
 import React, { useState } from "react";
 import { db, auth } from "../../utils/FirebaseConfig"; // Importa instância do Firestore e de autenticação
 import { collection, addDoc } from "firebase/firestore"; // Importa funções do Firestore
