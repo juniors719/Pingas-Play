@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./CriarUsuario.css";
 import { auth } from "../../utils/FirebaseConfig"; // Importe a instância de autenticação
 import { createUserWithEmailAndPassword } from "firebase/auth"; // Importe o método de criação de usuário
 import { useNavigate } from "react-router-dom"; // Importe o hook de navegação
