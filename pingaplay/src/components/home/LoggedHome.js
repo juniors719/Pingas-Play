@@ -3,63 +3,12 @@ import { auth } from "../../utils/FirebaseConfig";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 
+import logoPingaplayWhite from "../../images/logo-pingaplay-white-home.png";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import "./style.css";
-import logoPingaplayWhite from "../../images/logo-pingaplay-white-home.png";
-
-const AccountButton = ({ logado }) => {
-    if (logado) {
-        return (
-            <li className="nav-item dropdown">
-                <a
-                    className="nav-link dropdown-toggle text-white"
-                    href="/"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                >
-                    Minha Conta
-                </a>
-                <ul className="dropdown-menu">
-                    <li>
-                        <Link className="dropdown-item" to="professor/listar">
-                            Meus Dados
-                        </Link>
-                    </li>
-                    <li>
-                        <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                        <Logout />
-                    </li>
-                </ul>
-            </li>
-        );
-    } else {
-        return (
-            <>
-                <li className="nav-item">
-                    <a
-                        className="nav-link text-white botao-entrar-home"
-                        href="/"
-                    >
-                        Entrar
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a
-                        className="nav-link text-white botao-criarconta-home"
-                        href="/"
-                    >
-                        Criar Conta
-                    </a>
-                </li>
-            </>
-        );
-    }
-};
 
 const Logout = () => {
     const navigate = useNavigate();
@@ -80,9 +29,7 @@ const Logout = () => {
     );
 };
 
-const Home = () => {
-    let logado = true;
-
+const LoggedHome = () => {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-home">
@@ -168,7 +115,33 @@ const Home = () => {
                                 </a>
                             </li>
                             {/* Botões de Entrar e Criar conta */}
-                            <AccountButton logado={logado} />
+                            <li className="nav-item dropdown">
+                                <a
+                                    className="nav-link dropdown-toggle text-white"
+                                    href="/"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Minha Conta
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li>
+                                        <Link
+                                            className="dropdown-item"
+                                            to="professor/listar"
+                                        >
+                                            Meus Dados
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <hr className="dropdown-divider" />
+                                    </li>
+                                    <li>
+                                        <Logout />
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -178,4 +151,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default LoggedHome;
