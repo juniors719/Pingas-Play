@@ -23,7 +23,7 @@ const LoginUsuario = () => {
                 senha
             );
             console.log("Usuário logado com sucesso:", userCredential.user);
-            navigate("/home");
+            navigate("/");
         } catch (error) {
             console.error("Erro ao fazer login:", error);
             setErro("Erro ao fazer login. Verifique suas credenciais.");
