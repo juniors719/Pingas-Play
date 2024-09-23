@@ -136,7 +136,7 @@ const Home = () => {
                                     <li>
                                         <Link
                                             className="dropdown-item"
-                                            to="professor/listar"
+                                            to="competicoes/listar"
                                         >
                                             Listar Competições
                                         </Link>
