@@ -2,15 +2,16 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 
 import logoPingaplayWhite from "../../images/logo-pingaplay-white-home.png";
+import { UnloggedHomeButtons, LoggedHomeButtons } from "./HomeComponents";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import "./style.css";
 
-const UnloggedHome = () => {
+const Home = ({ logado }) => {
     return (
-        <>
+        <div className="body-container">
             <nav className="navbar navbar-expand-lg navbar-home">
                 <div className="container-fluid ">
                     <a
@@ -94,29 +95,18 @@ const UnloggedHome = () => {
                                 </a>
                             </li>
                             {/* Botões de Entrar e Criar conta */}
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link text-white botao-entrar-home"
-                                    href="/login"
-                                >
-                                    Entrar
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link text-white botao-criarconta-home"
-                                    href="/"
-                                >
-                                    Criar Conta
-                                </a>
-                            </li>
+                            {logado ? (
+                                <LoggedHomeButtons />
+                            ) : (
+                                <UnloggedHomeButtons />
+                            )}
                         </ul>
                     </div>
                 </div>
             </nav>
             <Outlet />
-        </>
+        </div>
     );
 };
 
-export default UnloggedHome;
+export default Home;
