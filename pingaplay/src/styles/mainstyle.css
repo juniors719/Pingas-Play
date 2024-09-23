@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100vh; /* Garante que o contêiner ocupe a altura total da viewport */
+}
+.navbar-home {
+    display: flex;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    /* Se você quiser um tamanho fixo para o menu */
+    height: 60px;
+}
+
+.body-main {
+    flex-grow: 1; /* Ocupa o espaço restante */
+    background-color: #DDD;
+}

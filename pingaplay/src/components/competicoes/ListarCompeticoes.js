@@ -1,8 +1,5 @@
 const ListarCompeticoes = () => {
+    return <div>teste</div>;
+};
 
-    return (
-        <div></div>
-    )
-}
-
-export default ListarCompeticoes
+export default ListarCompeticoes;

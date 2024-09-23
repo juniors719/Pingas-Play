@@ -34,3 +34,58 @@
     color: white;
     font-size: larger;
 }
+
+/* Certifique-se que o body-main ocupa o restante do espaço disponível */
+.body-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #f0f0f0;
+    flex-grow: 1; /* Garante que o body-main ocupe todo o espaço disponível */
+}
+
+/* Estilos do banner */
+.banner-container {
+    background-color: #003049;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    height: 300px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+/* Estilos do container de competições e ranking */
+.comps-rankis-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap; /* Garante que os elementos se reorganizem em telas menores */
+    flex-grow: 1;
+}
+
+/* Cada seção de competições e ranking */
+.competicoes-container, .ranking-container {
+    background-color: white;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 45%; /* Para garantir que ambos os containers fiquem lado a lado */
+}
+
+.nextcomp-ranking-header{
+    background-color: #003049;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    -ms-border-radius: 8px 8px 0 0;
+    -o-border-radius: 8px 8px 0 0;
+}
