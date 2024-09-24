@@ -1,70 +1,88 @@
-import "./MeusDados.css";
-import React, { useState, useEffect } from "react";
-import { db, auth } from "../../utils/FirebaseConfig"; // Importa instância do Firestore e de autenticação
-import { doc, getDoc, updateDoc } from "firebase/firestore"; // Importa funções do Firestore
+import UserFirebaseService from "../../services/UserFirebaseService";
+import FirebaseContext from "../../utils/FirabaseContext";
+import { auth } from "../../utils/FirebaseConfig";
+
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import "./MeusDados.css";
+
 const MeusDados = () => {
+    const [uid, setUid] = useState("");
+    const [id, setId] = useState("");
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
     const [dataNascimento, setDataNascimento] = useState("");
-    const [sexo, setSexo] = useState("masculino");
+    const [sexo, setSexo] = useState("");
+    const [pontos, setPontos] = useState(0);
     const [erro, setErro] = useState("");
     const [sucesso, setSucesso] = useState("");
-    const navigate = useNavigate(); // Instancie o hook de navegação
+    const navigate = useNavigate();
+    const firebase = useContext(FirebaseContext);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const user = auth.currentUser;
-            if (!user) {
-                navigate("/"); // Redireciona se não estiver autenticado
-                return;
-            }
-
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (userDoc.exists()) {
-                const userData = userDoc.data();
-                setNome(userData.nome);
-                setSobrenome(userData.sobrenome);
-                setDataNascimento(userData.dataNascimento?.toDate().toISOString().split("T")[0] || ""); // Formato para input type="date"
-                setSexo(userData.sexo.masculino ? "masculino" : userData.sexo.feminino ? "feminino" : "outro");
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUid(user.uid);
+                // Só chamar o serviço após definir o UID
+                UserFirebaseService.getUserbyUID(
+                    firebase.getFirestoreDB(),
+                    user.uid, // Passa diretamente o UID aqui
+                    (userData) => {
+                        if (userData) {
+                            const {
+                                nome,
+                                sobrenome,
+                                dataNascimento,
+                                sexo,
+                                id,
+                                pontos,
+                            } = userData;
+                            setNome(nome);
+                            setSobrenome(sobrenome);
+                            setDataNascimento(dataNascimento);
+                            setSexo(sexo);
+                            setId(id);
+                            setPontos(pontos);
+                        } else {
+                            setErro("Usuário não encontrado.");
+                        }
+                    }
+                );
             } else {
-                setErro("Usuário não encontrado!");
+                // Se o usuário não estiver logado, redirecionar para a página de login
+                navigate("/login");
             }
-        };
+        });
 
-        fetchUserData();
-    }, [navigate]);
+        // Cleanup listener on component unmount
+        return () => unsubscribe();
+    }, [firebase, navigate]);
+
+    const handleSelect = (e) => {
+        setSexo(e.target.value);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const user = auth.currentUser; // Obtém o usuário autenticado
-            if (!user) {
-                throw new Error("Usuário não autenticado!");
+        const user = {
+            nome: nome,
+            sobrenome: sobrenome,
+            dataNascimento: dataNascimento,
+            sexo: sexo,
+            pontos: pontos,
+            userId: uid,
+        };
+        UserFirebaseService.atualizar(
+            firebase.getFirestoreDB(),
+            id,
+            user,
+            () => {
+                setSucesso("Dados atualizados com sucesso!");
+                setErro("");
+                navigate("/"); // Redireciona para a página inicial
             }
-
-            // Atualiza os dados do usuário no Firestore
-            await updateDoc(doc(db, "users", user.uid), {
-                nome,
-                sobrenome,
-                dataNascimento: new Date(dataNascimento), // Converte para timestamp
-                sexo: {
-                    masculino: sexo === "masculino",
-                    feminino: sexo === "feminino",
-                    outro: sexo === "outro",
-                },
-            });
-
-            setSucesso("Dados atualizados com sucesso!");
-            setErro("");
-            navigate("/home"); // Redireciona para a página inicial
-        } catch (error) {
-            console.error("Erro ao atualizar dados: ", error);
-            setErro("Erro ao atualizar dados. Tente novamente.");
-            setSucesso("");
-        }
+        );
     };
 
     return (
@@ -123,14 +141,13 @@ const MeusDados = () => {
                     <select
                         id="gender"
                         name="gender"
-                        className="form-control"
-                        required
+                        className="form-select"
                         value={sexo}
-                        onChange={(e) => setSexo(e.target.value)}
+                        onChange={handleSelect}
                     >
-                        <option value="masculino">Masculino</option>
-                        <option value="feminino">Feminino</option>
-                        <option value="outro">Outro</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Outro">Outro</option>
                     </select>
 
                     <button type="submit" className="btn btn-primary">

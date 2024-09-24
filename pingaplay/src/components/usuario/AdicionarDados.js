@@ -8,7 +8,7 @@ const AdicionarDados = () => {
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
     const [dataNascimento, setDataNascimento] = useState("");
-    const [sexo, setSexo] = useState("masculino"); // Inicializando como "masculino"
+    const [sexo, setSexo] = useState(""); // Inicializando como "masculino"
     const [erro, setErro] = useState("");
     const [sucesso, setSucesso] = useState("");
     const navigate = useNavigate(); // Instancie o hook de navegação
@@ -38,11 +38,7 @@ const AdicionarDados = () => {
                 sobrenome,
                 dataNascimento: parsedDate, // Converte para timestamp
                 pontos: 0, // Inicializa com 0
-                sexo: {
-                    masculino: sexo === "masculino",
-                    feminino: sexo === "feminino",
-                    outro: sexo === "outro",
-                }, // Map conforme requerido no Firestore
+                sexo: sexo,
             });
 
             setSucesso("Dados salvos com sucesso!");
@@ -116,9 +112,9 @@ const AdicionarDados = () => {
                         value={sexo}
                         onChange={(e) => setSexo(e.target.value)}
                     >
-                        <option value="masculino">Masculino</option>
-                        <option value="feminino">Feminino</option>
-                        <option value="outro">Outro</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Outro">Outro</option>
                     </select>
 
                     <button type="submit" className="btn btn-primary">

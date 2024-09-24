@@ -56,7 +56,7 @@ class UserFirebaseService {
             console.log("QuerySnapshot:", querySnapshot);
 
             if (querySnapshot.empty) {
-                console.error("Usuário não encontrado");
+                console.error("Usuárioo não encontrado");
                 callback(null);
                 return;
             }
@@ -64,7 +64,7 @@ class UserFirebaseService {
             const userSnap = querySnapshot.docs[0];
 
             if (!userSnap.exists()) {
-                console.error("Usuário não encontrado");
+                console.error("Usuário não encontradoo");
                 callback(null);
                 return;
             }
@@ -90,6 +90,18 @@ class UserFirebaseService {
             callback(true);
         } catch (error) {
             console.error("Error adding document: ", error);
+            callback(false);
+        }
+    }
+
+    static async atualizar(db, id, userAtualizado, callback) {
+        const MyDoc = doc(db, "users", id);
+        try {
+            await setDoc(MyDoc, userAtualizado);
+            console.log("Document written with ID: ", MyDoc.id);
+            callback(true);
+        } catch (error) {
+            console.error("Error updating document: ", error);
             callback(false);
         }
     }
