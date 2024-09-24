@@ -11,7 +11,7 @@ const Scoreboard = () => {
     const [player2Sets, setPlayer2Sets] = useState(0);
     const [isGameStarted, setIsGameStarted] = useState(false);
     const [isWarmingUp, setIsWarmingUp] = useState(false);
-    const [warmUpTime, setWarmUpTime] = useState(3);
+    const [warmUpTime, setWarmUpTime] = useState(0);
     const [isGameOver, setIsGameOver] = useState(false);
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
@@ -32,10 +32,10 @@ const Scoreboard = () => {
 
     // Função para iniciar o aquecimento e, após ele, começar o jogo
     const startGame = () => {
-        if (player1Name && player2Name) {
+        if (player1Name && player2Name && warmUpTime >= 0) {
             setIsWarmingUp(true);
         } else {
-            alert("Por favor, insira os nomes dos jogadores.");
+            alert("Por favor, preencha todos os campos!");
         }
     };
 
@@ -93,7 +93,7 @@ const Scoreboard = () => {
         setIsGameStarted(false);
         setIsWarmingUp(false);
         setIsGameOver(false);
-        setWarmUpTime(3);
+        setWarmUpTime(0);
         setElapsedTime(0);
         setIsTimerRunning(false);
         setWinner(""); // Limpa o vencedor
@@ -138,16 +138,7 @@ const Scoreboard = () => {
                             type="text"
                             className="form-control"
                             placeholder="Aquecimento (min)"
-                            onChange={(e) => {
-                                if (!isNaN(e.target.value)) {
-                                    setWarmUpTime(e.target.value * 60);
-                                } else {
-                                    setIsGameStarted(false);
-                                    alert(
-                                        "Por favor, insira um número válido."
-                                    );
-                                }
-                            }}
+                            onChange={(e) => setWarmUpTime(e.target.value * 60)}
                         />
                     </div>
                     <button className="btn btn-primary" onClick={startGame}>
