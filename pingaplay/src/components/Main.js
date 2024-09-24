@@ -21,6 +21,7 @@ import CriarUsuario from "./usuario/CriarUsuario";
 import Scoreboard from "./placar/ScoreBoard";
 import AdicionarDados from "./usuario/AdicionarDados";
 import MeusDados from "./usuario/MeusDados";
+import CadastrarCompeticao from "./competicoes/CadastrarCompeticao";
 
 const Main = () => {
     const [logged, setLogged] = useState(null);
@@ -49,13 +50,17 @@ const Main = () => {
                                 ),
                             },
                             {
-                                path: "competicoes/listar",
+                                path: "/competicoes/listar",
                                 element: <ListarCompeticoes />,
                             },
                             {
                                 path: "/placar",
                                 element: <Scoreboard />,
                             },
+                            {
+                                path: "/competicoes/cadastrar",
+                                element: <CadastrarCompeticao/>,
+                            }
                         ],
                     },
                     {
