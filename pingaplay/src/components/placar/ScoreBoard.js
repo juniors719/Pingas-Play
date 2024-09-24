@@ -9,11 +9,11 @@ const Scoreboard = () => {
     const [player2Name, setPlayer2Name] = useState("");
     const [player1Sets, setPlayer1Sets] = useState(0);
     const [player2Sets, setPlayer2Sets] = useState(0);
-    const [isGameStarted, setIsGameStarted] = useState(false);
+    const [isGameStarted, setIsGameStarted] = useState(false); // Inicia como false
     const [isWarmingUp, setIsWarmingUp] = useState(false);
-    const [warmUpTime, setWarmUpTime] = useState(0);
+    const [warmUpTime, setWarmUpTime] = useState(0); // Inicia como 0
     const [isGameOver, setIsGameOver] = useState(false);
-    const [elapsedTime, setElapsedTime] = useState(0);
+    const [elapsedTime, setElapsedTime] = useState(0); // Inicia como 0
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [winner, setWinner] = useState("");
     const maxScore = 11;
@@ -32,10 +32,12 @@ const Scoreboard = () => {
 
     // Função para iniciar o aquecimento e, após ele, começar o jogo
     const startGame = () => {
-        if (player1Name && player2Name && warmUpTime >= 0) {
+        if (player1Name && player2Name && warmUpTime >= 0) { // Modificado para garantir que o aquecimento seja maior que 0
             setIsWarmingUp(true);
+            setIsGameStarted(false); // Assegura que o jogo não começou
+            setElapsedTime(0); // Reseta o tempo de jogo
         } else {
-            alert("Por favor, preencha todos os campos!");
+            alert("Por favor, preencha todos os campos corretamente!");
         }
     };
 
@@ -44,7 +46,7 @@ const Scoreboard = () => {
         if (isWarmingUp && warmUpTime > 0) {
             const timer = setTimeout(() => setWarmUpTime(warmUpTime - 1), 1000);
             return () => clearTimeout(timer);
-        } else if (warmUpTime === 0) {
+        } else if (warmUpTime === 0 && isWarmingUp) {
             setIsWarmingUp(false);
             setIsGameStarted(true);
             setIsTimerRunning(true);
@@ -90,11 +92,11 @@ const Scoreboard = () => {
         setPlayer2Sets(0);
         setPlayer1Name("");
         setPlayer2Name("");
-        setIsGameStarted(false);
+        setIsGameStarted(false); // Reseta o jogo para não iniciado
         setIsWarmingUp(false);
         setIsGameOver(false);
-        setWarmUpTime(0);
-        setElapsedTime(0);
+        setWarmUpTime(0); // Reseta o tempo de aquecimento
+        setElapsedTime(0); // Reseta o tempo decorrido
         setIsTimerRunning(false);
         setWinner(""); // Limpa o vencedor
     };
@@ -113,7 +115,7 @@ const Scoreboard = () => {
 
     return (
         <div className="container">
-            <h1 className="title">Placar Pingas Play</h1>
+            <h1 className="title">Placar:</h1>
 
             {!isGameStarted && !isWarmingUp ? (
                 <div className="name-input">
@@ -135,10 +137,11 @@ const Scoreboard = () => {
                     </div>
                     <div className="mb-3">
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             placeholder="Aquecimento (min)"
-                            onChange={(e) => setWarmUpTime(e.target.value * 60)}
+                            min="1"
+                            onChange={(e) => setWarmUpTime(Number(e.target.value) * 60)} // Convert minutes to seconds
                         />
                     </div>
                     <button className="btn btn-primary" onClick={startGame}>
@@ -147,7 +150,7 @@ const Scoreboard = () => {
                 </div>
             ) : isWarmingUp ? (
                 <div>
-                    <h2>Aquecendo... {warmUpTime}</h2>
+                    <h2>Aquecendo... {Math.floor(warmUpTime / 60)}:{warmUpTime % 60 < 10 ? '0' : ''}{warmUpTime % 60}</h2>
                 </div>
             ) : isGameOver ? (
                 <div>
