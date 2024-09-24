@@ -1,4 +1,4 @@
-![Logo PingasPlay](./pingplay/src/components/images/logo-pingaplay-white-home.png)
+![Logo PingasPlay](./pingaplay/src/components/images/logo-pingaplay-white-home.png)
 
 
 # PingasPlay - DevWeb - Project
