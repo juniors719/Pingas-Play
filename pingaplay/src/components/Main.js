@@ -4,6 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/FirebaseConfig";
 
+import Firebase from "../utils/Firebase";
+import FirebaseContext from "../utils/FirabaseContext";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -26,36 +29,38 @@ const Main = () => {
     }, []);
 
     return (
-        <RouterProvider
-            router={createBrowserRouter([
-                {
-                    path: "/",
-                    element: <Home logado={logged} />,
-                    children: [
-                        {
-                            index: true,
-                            element: logged ? (
-                                <LoggedContainerBody />
-                            ) : (
-                                <UnloggedContainerBody />
-                            ),
-                        },
-                        {
-                            path: "competicoes/listar",
-                            element: <ListarCompeticoes />,
-                        },
-                    ],
-                },
-                {
-                    path: "/login",
-                    element: <LoginUsuario />,
-                },
-                {
-                    path: "/criar-conta",
-                    element: <CriarUsuario />,
-                },
-            ])}
-        />
+        <FirebaseContext.Provider value={new Firebase()}>
+            <RouterProvider
+                router={createBrowserRouter([
+                    {
+                        path: "/",
+                        element: <Home logado={logged} />,
+                        children: [
+                            {
+                                index: true,
+                                element: logged ? (
+                                    <LoggedContainerBody />
+                                ) : (
+                                    <UnloggedContainerBody />
+                                ),
+                            },
+                            {
+                                path: "competicoes/listar",
+                                element: <ListarCompeticoes />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "/login",
+                        element: <LoginUsuario />,
+                    },
+                    {
+                        path: "/criar-conta",
+                        element: <CriarUsuario />,
+                    },
+                ])}
+            />
+        </FirebaseContext.Provider>
     );
 };
 
