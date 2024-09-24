@@ -2,7 +2,6 @@ import CompetitionFirebaseService from "../../../services/CompetitionFirebaseSer
 import FirebaseContext from "../../../utils/FirabaseContext";
 
 import { useEffect, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
 import "./NextCompetitions.css";
 
@@ -21,8 +20,11 @@ const CompetitionItemHome = ({ competition }) => {
 };
 
 const RenderizarCompeticoes = ({ competitions }) => {
-    return competitions.map((competition) => (
-        <CompetitionItemHome key={competition.nome} competition={competition} />
+    return competitions.map((competition, index) => (
+        <CompetitionItemHome
+            key={competition.id || index}
+            competition={competition}
+        />
     ));
 };
 

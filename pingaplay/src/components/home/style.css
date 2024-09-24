@@ -79,6 +79,8 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     flex: 1;
     min-width: 45%; /* Para garantir que ambos os containers fiquem lado a lado */
+    display: flex;
+    flex-direction: column;
 }
 
 .nextcomp-ranking-header{
