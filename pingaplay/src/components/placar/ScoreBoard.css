@@ -1,4 +1,3 @@
-/* Scoreboard.css */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .container {
@@ -8,7 +7,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #2886dd;
+    background-color: #ddd;
     color: white;
     max-width: 100%;
 }
@@ -22,9 +21,19 @@
     width: 300px;
 }
 
-
+.timer {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
 
 .scoreboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.players-container {
     display: flex;
     justify-content: space-between;
     width: 80%;
