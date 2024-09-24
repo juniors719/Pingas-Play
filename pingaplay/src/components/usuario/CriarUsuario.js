@@ -30,7 +30,7 @@ const CriarUsuario = () => {
 
     return (
         <div id="usercreation-content">
-            <h2>Criar Usuário</h2>
+            <h2 className="title-criar-usuario">Criar Usuário</h2>
             {erro && <p style={{ color: "red" }}>{erro}</p>}
             <form
                 className="form-content"

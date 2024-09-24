@@ -1,0 +1,61 @@
+.listagem-campeonato {
+    background-color: #eaeaea;
+    border-radius: 50px;
+    height: 7vh;
+    position: relative;
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 0px;
+}
+
+
+ .listagem-campeonato .text-wrapper {
+    color: #000000;
+    font-family: "Cabin-Regular", Helvetica;
+    font-size: 1.6rem;
+    font-weight: 400;
+    position: relative;
+    flex: 3;
+    overflow: hidden;
+}
+
+.listagem-campeonato .nome-organizador {
+    color: #476273;
+    font-family: "Cabin-Regular", Helvetica;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    flex: 1;
+    max-width: max-content;
+    padding: 10px;
+    text-align: left;
+}
+
+
+.listagem-campeonato .data-do-campeonato {
+    color: #476273;
+    font-family: "Cabin-Regular", Helvetica;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    flex: 1;
+    max-width: max-content;
+    padding: 10px;
+}
+
+.competition-list-home {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    align-items: center;
+} 
+  
