@@ -74,7 +74,7 @@ const Home = ({ logado }) => {
                                     <li>
                                         <Link
                                             className="dropdown-item"
-                                            to="professor/criar"
+                                            to="competicoes/minhas-competicoes"
                                         >
                                             Minhas Competições
                                         </Link>
@@ -82,7 +82,7 @@ const Home = ({ logado }) => {
                                     <li>
                                         <Link
                                             className="dropdown-item"
-                                            to="professor/criar"
+                                            to="competicoes/cadastrar"
                                         >
                                             Cadastrar Competições
                                         </Link>
