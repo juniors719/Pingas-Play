@@ -1,6 +1,6 @@
 .listagem-campeonato {
     background-color: #eaeaea;
-    border-radius: 50px;
+    border-radius: 5px;
     height: 7vh;
     position: relative;
     width: 97%;
@@ -12,6 +12,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 0px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 

@@ -3,7 +3,6 @@
 
 PingasPlay é um site dedicado ao tênis de mesa, permitindo a criação de contas, visualização de rankings entre competidores e a criação de competições. Este projeto foi desenvolvido para a disciplina de Desenvolvimento Web com o professor Jefferson Carvalho.
 
-
 ## 🔍 Funcionalidades do Projeto
 
 - **Criação de Conta:** Permite que usuários se registrem e façam login para acessar o conteúdo completo do site.
@@ -25,7 +24,6 @@ PingasPlay é um site dedicado ao tênis de mesa, permitindo a criação de cont
 - [Laura Lobo](https://www.linkedin.com/in/lauralobovm/)
 - [Maria Eduarda](https://www.linkedin.com/in/eduardamota05)
 - Patrick
-
 
 # Getting Started with Create React App
 

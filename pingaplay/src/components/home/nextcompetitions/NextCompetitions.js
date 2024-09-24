@@ -1,11 +1,21 @@
+import CompetitionFirebaseService from "../../../services/CompetitionFirebaseService";
+import FirebaseContext from "../../../utils/FirabaseContext";
+
+import { useEffect, useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import "./NextCompetitions.css";
 
 const CompetitionItemHome = ({ competition }) => {
     return (
         <div className="listagem-campeonato">
-            <div className="text-wrapper">{competition.nome}</div>
-            <div className="nome-organizador">{competition.organizador}</div>
-            <div className="data-do-campeonato">{competition.data}</div>
+            <div className="text-wrapper">{competition.título}</div>
+            <div className="nome-organizador">
+                {competition.nomeorganizador}
+            </div>
+            <div className="data-do-campeonato">
+                {competition.data.toLocaleDateString()}
+            </div>
         </div>
     );
 };
@@ -17,23 +27,15 @@ const RenderizarCompeticoes = ({ competitions }) => {
 };
 
 const NextCompetitions = () => {
-    const competitions = [
-        {
-            nome: "Campeonato de CS:GO",
-            organizador: "Valve",
-            data: "10/10/2022",
-        },
-        {
-            nome: "Campeonato de LoL",
-            organizador: "Riot Games",
-            data: "20/10/2022",
-        },
-        {
-            nome: "Campeonato de Valorant",
-            organizador: "Riot Games",
-            data: "30/10/2022",
-        },
-    ];
+    const [competitions, setCompetitions] = useState([]);
+    const firebase = useContext(FirebaseContext);
+
+    useEffect(() => {
+        CompetitionFirebaseService.listar(
+            firebase.getFirestoreDB(),
+            (competitions) => setCompetitions(competitions)
+        );
+    }, [firebase]);
 
     return (
         <div className="proximas-competicoes">
