@@ -8,10 +8,11 @@ import {
     deleteDoc,
     query,
     Timestamp,
+    where,
 } from "firebase/firestore";
 
 // user:
-// - userId: string
+// - userId: string(id de autenticacao)
 // - nome: string
 // - sobrenome: string
 // - dataNascimento: Timestamp
@@ -44,5 +45,41 @@ class UserFirebaseService {
             callback([]);
         }
     }
+
+    static getUserbyUID = async (db, uid, callback) => {
+        try {
+            console.log("Buscando usuário com o UID:", uid);
+            const usersCollection = collection(db, "users");
+            const q = query(usersCollection, where("userId", "==", uid));
+            const querySnapshot = await getDocs(q);
+
+            console.log("QuerySnapshot:", querySnapshot);
+
+            if (querySnapshot.empty) {
+                console.error("Usuário não encontrado");
+                callback(null);
+                return;
+            }
+
+            const userSnap = querySnapshot.docs[0];
+
+            if (!userSnap.exists()) {
+                console.error("Usuário não encontrado");
+                callback(null);
+                return;
+            }
+
+            const data = userSnap.data();
+            const user = {
+                id: userSnap.id,
+                ...data,
+            };
+            console.log("Usuário encontrado com sucesso:", user);
+            callback(user);
+        } catch (error) {
+            console.error("Erro ao buscar o usuário:", error);
+            callback(null);
+        }
+    };
 }
 export default UserFirebaseService;

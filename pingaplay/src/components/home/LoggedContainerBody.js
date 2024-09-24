@@ -1,6 +1,25 @@
-// LoggedContainerBody.js
-const LoggedContainerBody = () => {
-    return <div>Bem-vindo de volta! Aqui estão suas informações.</div>;
+// UnloggedContainerBody.js
+import React from "react";
+import NextCompetitions from "./nextcompetitions/NextCompetitions";
+import Ranking from "./ranking/Ranking";
+import UserInfo from "./userinfo/UserInfo";
+
+const UnloggedContainerBody = () => {
+    return (
+        <div className="body-main">
+            <div className="userinfo-container">
+                <UserInfo />
+            </div>
+            <div className="comps-rankis-container">
+                <div className="competicoes-container">
+                    <NextCompetitions />
+                </div>
+                <div className="ranking-container">
+                    <Ranking />
+                </div>
+            </div>
+        </div>
+    );
 };
 
-export default LoggedContainerBody;
+export default UnloggedContainerBody;

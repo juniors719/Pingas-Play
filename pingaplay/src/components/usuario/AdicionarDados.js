@@ -47,7 +47,7 @@ const AdicionarDados = () => {
 
             setSucesso("Dados salvos com sucesso!");
             setErro("");
-            navigate("/home"); // Redireciona para a página inicial
+            navigate("/"); // Redireciona para a página inicial
         } catch (error) {
             console.error("Erro ao salvar dados: ", error);
             setErro("Erro ao salvar dados. Tente novamente.");

@@ -31,7 +31,7 @@ const LoginUsuario = () => {
     };
 
     const goToCreateUser = () => {
-        navigate("/criar-usuario");
+        navigate("/criar-conta");
     };
 
     const handleResetPassword = () => {
@@ -47,7 +47,7 @@ const LoginUsuario = () => {
 
             {/* Lado direito com o formulário */}
             <div id="login-content">
-                <h2 id = "login-title">Login</h2>
+                <h2 id="login-title">Login</h2>
                 {erro && <p>{erro}</p>}
                 <form
                     className="form-content"
