@@ -6,11 +6,7 @@ import Ranking from "./ranking/Ranking";
 const UnloggedContainerBody = () => {
     return (
         <div className="body-main">
-            <div className="banner-container">
-                <h1>Bem-vindo ao PingasPlay!</h1>
-                <p>Explore competições e rankings na nossa plataforma!</p>
-                {/* Aqui você pode adicionar imagens ou banners específicos */}
-            </div>
+            <div className="banner-container"></div>
             <div className="comps-rankis-container">
                 <div className="competicoes-container">
                     <NextCompetitions />

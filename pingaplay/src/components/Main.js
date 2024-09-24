@@ -14,7 +14,7 @@ import Home from "./home/Home";
 import ListarCompeticoes from "./competicoes/ListarCompeticoes";
 import LoggedContainerBody from "./home/LoggedContainerBody";
 import UnloggedContainerBody from "./home/UnloggedContainerBody";
-
+import CriarUsuario from "./usuario/CriarUsuario";
 const Main = () => {
     const [logged, setLogged] = useState(null);
 
@@ -49,6 +49,10 @@ const Main = () => {
                 {
                     path: "/login",
                     element: <LoginUsuario />,
+                },
+                {
+                    path: "/criar-conta",
+                    element: <CriarUsuario />,
                 },
             ])}
         />

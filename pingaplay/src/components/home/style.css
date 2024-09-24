@@ -47,10 +47,12 @@
 
 /* Estilos do banner */
 .banner-container {
-    background-color: #003049;
+    /*background-color: #003049;
+    */
+    background-image: url('https://via.placeholder.com/1820x300');
+    width: 100%;
     color: white;
     text-align: center;
-    padding: 40px 20px;
     margin-bottom: 20px;
     border-radius: 8px;
     height: 300px;
@@ -84,6 +86,10 @@
     color: white;
     padding: 10px;
     border-radius: 8px 8px 0 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    align-items: center;
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
     -ms-border-radius: 8px 8px 0 0;

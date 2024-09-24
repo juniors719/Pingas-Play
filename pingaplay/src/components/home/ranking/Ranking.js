@@ -3,9 +3,9 @@ const Ranking = () => {
     return (
         <div className="ranking">
             <div className="nextcomp-ranking-header">
-                <h2>Ranking</h2>
+                <span>Ranking</span>
             </div>
-            <ul>
+            <ul className="">
                 {/* Exemplo de ranking */}
                 <li>Usuário 1 - 1000 pontos</li>
                 <li>Usuário 2 - 950 pontos</li>

@@ -50,7 +50,7 @@ const UnloggedHomeButtons = () => {
             <li className="nav-item">
                 <a
                     className="nav-link text-white botao-criarconta-home"
-                    href="/"
+                    href="/criar-conta"
                 >
                     Criar Conta
                 </a>
