@@ -29,36 +29,38 @@ const CriarUsuario = () => {
     };
 
     return (
-        <div id="usercreation-content">
-            <h2 className="title-criar-usuario">Criar Usuário</h2>
-            {erro && <p style={{ color: "red" }}>{erro}</p>}
-            <form
-                className="form-content"
-                id="form-createUser"
-                onSubmit={handleSubmit}
-            >
-                <label className="form-label">Email:</label>
-                <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+        <div className="usercreation-container">
+            <div id="usercreation-content">
+                <h2 className="title-criar-usuario">Criar Usuário</h2>
+                {erro && <p style={{ color: "red" }}>{erro}</p>}
+                <form
+                    className="form-content"
+                    id="form-createUser"
+                    onSubmit={handleSubmit}
+                >
+                    <label className="form-label">Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
-                <label className="form-label">Senha:</label>
-                <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
-                />
+                    <label className="form-label">Senha:</label>
+                    <input
+                        type="password"
+                        name="password"
+                        className="form-control"
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
+                    />
 
-                <button type="submit" className="btn btn-primary">
-                    Criar
-                </button>
-            </form>
+                    <button type="submit" className="btn btn-primary">
+                        Criar
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
