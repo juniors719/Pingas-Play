@@ -81,5 +81,17 @@ class UserFirebaseService {
             callback(null);
         }
     };
+
+    // adicionar
+    static async adicionar(db, user, callback) {
+        try {
+            const docRef = await addDoc(collection(db, "users"), user);
+            console.log("Document written with ID: ", docRef.id);
+            callback(true);
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            callback(false);
+        }
+    }
 }
 export default UserFirebaseService;
