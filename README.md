@@ -1,14 +1,16 @@
+![Logo PingasPlay](./pingplay/src/components/images/logo-pingaplay-white-home.png)
+
 
 # PingasPlay - DevWeb - Project
 
-PingasPlay é um site dedicado ao tênis de mesa, permitindo a criação de contas, visualização de rankings entre competidores e a criação de competições. Este projeto foi desenvolvido para a disciplina de Desenvolvimento Web com o professor Jefferson Carvalho.
+PingasPlay é um site dedicado ao tênis de mesa, permitindo a criação de contas, visualização de rankings entre competidores e a criação de competições. Este projeto foi desenvolvido para o projeto final da disciplina de Desenvolvimento Web com o professor Jefferson Carvalho.
 
 ## 🔍 Funcionalidades do Projeto
 
 - **Criação de Conta:** Permite que usuários se registrem e façam login para acessar o conteúdo completo do site.
 - **Recuperação de Conta:** Permite que o usuário recupere sua conta, por meio da redefinição da senha.
 - **Ranking de Competidores:** Exibe o ranking dos jogadores cadastrados, baseado em suas pontuações e desempenho.
-- **Criação de Competições:** Organize e gerencie competições de tênis de mesa, com controle de participantes e resultados.
+- **Criação de Competições:** Permite a organização e a criação de competições de tênis de mesa, com controle de participantes e resultados.
 
 ## 💡 Tecnologias Utilizadas
 
