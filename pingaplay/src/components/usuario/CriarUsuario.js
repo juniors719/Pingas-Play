@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CriarUsuario.css";
 import { auth } from "../../utils/FirebaseConfig"; // Importe a instância de autenticação
@@ -10,6 +10,17 @@ const CriarUsuario = () => {
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
     const navigate = useNavigate(); // Instancie o hook de navegação
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                navigate("/"); // Redirecione para a página inicial se o usuário estiver logado
+            }
+        });
+
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
+    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

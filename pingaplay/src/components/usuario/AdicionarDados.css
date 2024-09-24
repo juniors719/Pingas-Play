@@ -1,117 +1,25 @@
-/* Estilo básico para resetar margens e espaçamentos */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.adicionar-dados-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0b2741;
+    width: 100vw;
+    height: 100vh;
 }
 
-/* Estilo para o container principal */
-div {
+.adicionar-dados-frame {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color: #f0f2f5;
-    min-height: 100vh;
-}
-
-/* Título do formulário */
-h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Estilo para o formulário */
-#form-addUserData {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200%;
-    max-width: 500px;
-}
-
-/* Estilo para labels */
-.form-label {
-    display: block;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 8px;
-}
-
-/* Estilo para campos de input e select */
-.form-control {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s;
-}
-
-.form-control:focus {
-    border-color: #007bff;
-    outline: none;
     background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 80%;
 }
 
-/* Estilo para botão */
-.btn {
-    display: inline-block;
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    color: #ffffff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo para mensagens de erro e sucesso */
-p {
-    margin-bottom: 20px;
-    font-size: 16px;
-}
-
-p[style*="red"] {
-    color: red;
-    background-color: #ffe6e6;
-    border: 1px solid red;
-    padding: 10px;
-    border-radius: 4px;
-}
-
-p[style*="green"] {
-    color: green;
-    background-color: #e6ffe6;
-    border: 1px solid green;
-    padding: 10px;
-    border-radius: 4px;
-}
-
-/* Estilo responsivo */
-@media (max-width: 600px) {
-    #form-addUserData {
-        padding: 20px;
-    }
-
-    .form-control {
-        padding: 10px;
-    }
-
-    .btn {
-        padding: 10px;
-    }
+.adicionar-dados-frame form {
+    flex-grow: 1;
+    width: 100%;    
 }
