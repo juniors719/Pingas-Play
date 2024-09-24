@@ -20,6 +20,7 @@ import UnloggedContainerBody from "./home/UnloggedContainerBody";
 import CriarUsuario from "./usuario/CriarUsuario";
 import Scoreboard from "./placar/ScoreBoard";
 import AdicionarDados from "./usuario/AdicionarDados";
+import MeusDados from "./usuario/MeusDados";
 
 const Main = () => {
     const [logged, setLogged] = useState(null);
@@ -69,6 +70,11 @@ const Main = () => {
                         path: "/adicionar-dados",
                         element: <AdicionarDados />,
                     },
+                    {
+                        path: "/meus-dados",
+                        element: <MeusDados />,
+
+                    }
                 ])}
             />
         </FirebaseContext.Provider>
