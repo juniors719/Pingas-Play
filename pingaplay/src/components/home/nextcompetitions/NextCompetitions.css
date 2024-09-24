@@ -1,7 +1,7 @@
-.listagem-campeonato {
-    background-color: #eaeaea;
+.listagem-campeonato, .listagem-ranking {
+    background-color: #eee;
     border-radius: 5px;
-    height: 7vh;
+    min-height: 50px; /* Use min-height para permitir que o item expanda se necessário */
     position: relative;
     width: 97%;
     display: flex;
@@ -12,10 +12,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 0px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+}
+
+.listagem-ranking {
+    justify-content: flex-start;
 }
 
 
@@ -29,7 +29,7 @@
     overflow: hidden;
 }
 
-.listagem-campeonato .nome-organizador {
+.listagem-campeonato .nome-organizador, .pontos {
     color: #476273;
     font-family: "Cabin-Regular", Helvetica;
     font-size: 1.2rem;
@@ -37,6 +37,32 @@
     line-height: normal;
     position: relative;
     flex: 1;
+    max-width: max-content;
+    padding: 10px;
+    text-align: left;
+}
+
+.posicao {
+    color: #476273;
+    font-family: "Cabin-Regular", Helvetica;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    flex: 1;
+    max-width: max-content;
+    padding: 10px;
+    text-align: center;
+}
+
+.nome-ranking {
+    color: #476273;
+    font-family: "Cabin-Regular", Helvetica;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    flex: 3;
     max-width: max-content;
     padding: 10px;
     text-align: left;
@@ -55,11 +81,16 @@
     padding: 10px;
 }
 
-.competition-list-home {
+.competition-list-home,
+.ranking-list-home {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-    align-items: center;
-} 
+    gap: 10px; /* Espaçamento entre os itens */
+    margin-top: 10px; /* Espaçamento superior */
+    align-items: center; /* Centraliza os itens */
+    overflow-y: auto; /* Permite rolagem vertical */
+    overflow-x: hidden; /* Oculta rolagem horizontal */
+    max-height: 430px; /* Altura máxima do contêiner */
+    width: 100%; /* Largura total do contêiner */
+}
   
