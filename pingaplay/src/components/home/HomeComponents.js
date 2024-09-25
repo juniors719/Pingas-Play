@@ -75,7 +75,7 @@ const LoggedHomeButtons = () => {
                 </a>
                 <ul className="dropdown-menu">
                     <li>
-                        <Link className="dropdown-item" to="professor/listar">
+                        <Link className="dropdown-item" to="/meus-dados">
                             Meus Dados
                         </Link>
                     </li>

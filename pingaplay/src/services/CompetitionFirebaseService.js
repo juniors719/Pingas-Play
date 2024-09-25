@@ -13,26 +13,24 @@ import {
 class CompetitionFirebaseService {
     static async listar(db, callback) {
         const c = collection(db, "competicoes");
-
         const q = query(c);
 
         try {
             const querySnapshot = await getDocs(q);
             const competicoes = [];
+
             for (const competicao of querySnapshot.docs) {
                 const data = competicao.data();
-                // Verifica e converte timestamps para datas legíveis
+                // Formata os dados da competição
                 const competicaoFormatada = {
                     id: competicao.id,
                     ...data,
+                    data: data.data || "Data não fornecida", // Usa o campo de string diretamente
                 };
-                if (data.data) {
-                    competicaoFormatada.data = data.data.toDate();
-                }
 
                 // Fetch organizer details
-                if (data.IDorganizador) {
-                    const organizadorRef = doc(db, "users", data.IDorganizador);
+                if (data.IDOrganizador) {
+                    const organizadorRef = doc(db, "users", data.IDOrganizador);
                     const organizadorSnap = await getDoc(organizadorRef);
                     if (organizadorSnap.exists()) {
                         const organizadorData = organizadorSnap.data();
@@ -48,6 +46,7 @@ class CompetitionFirebaseService {
 
                 competicoes.push(competicaoFormatada);
             }
+
             callback(competicoes);
         } catch (error) {
             console.error("Error fetching competitions: ", error);
@@ -58,10 +57,7 @@ class CompetitionFirebaseService {
     static async adicionar(db, competicao, callback) {
         try {
             const c = collection(db, "competicoes");
-            const competicaoAdicionada = await addDoc(c, {
-                ...competicao,
-                data: Timestamp.fromDate(competicao.data),
-            });
+            const competicaoAdicionada = await addDoc(c, competicao);
             callback(competicaoAdicionada.id);
         } catch (error) {
             console.error("Error adding competition: ", error);

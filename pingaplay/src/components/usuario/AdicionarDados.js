@@ -8,7 +8,7 @@ const AdicionarDados = () => {
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
     const [dataNascimento, setDataNascimento] = useState("");
-    const [sexo, setSexo] = useState("masculino"); // Inicializando como "masculino"
+    const [sexo, setSexo] = useState(""); // Inicializando como "masculino"
     const [erro, setErro] = useState("");
     const [sucesso, setSucesso] = useState("");
     const navigate = useNavigate(); // Instancie o hook de navegação
@@ -22,32 +22,19 @@ const AdicionarDados = () => {
                 throw new Error("Usuário não autenticado!");
             }
 
-            // Verifica se dataNascimento está no formato correto e cria um objeto Date
-            let parsedDate = null;
-            if (dataNascimento) {
-                parsedDate = new Date(dataNascimento);
-                if (isNaN(parsedDate.getTime())) {
-                    throw new Error("Data inválida.");
-                }
-            }
-
             // Adiciona os dados do usuário ao Firestore
             await addDoc(collection(db, "users"), {
-                userId: user.uid, // Associa os dados ao ID do usuário autenticado
+                userId: user.uid,
                 nome,
                 sobrenome,
-                dataNascimento: parsedDate, // Converte para timestamp
-                pontos: 0, // Inicializa com 0
-                sexo: {
-                    masculino: sexo === "masculino",
-                    feminino: sexo === "feminino",
-                    outro: sexo === "outro",
-                }, // Map conforme requerido no Firestore
+                dataNascimento: dataNascimento,
+                pontos: 0,
+                sexo: sexo,
             });
 
             setSucesso("Dados salvos com sucesso!");
             setErro("");
-            navigate("/home"); // Redireciona para a página inicial
+            navigate("/");
         } catch (error) {
             console.error("Erro ao salvar dados: ", error);
             setErro("Erro ao salvar dados. Tente novamente.");
@@ -116,9 +103,9 @@ const AdicionarDados = () => {
                         value={sexo}
                         onChange={(e) => setSexo(e.target.value)}
                     >
-                        <option value="masculino">Masculino</option>
-                        <option value="feminino">Feminino</option>
-                        <option value="outro">Outro</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Outro">Outro</option>
                     </select>
 
                     <button type="submit" className="btn btn-primary">
