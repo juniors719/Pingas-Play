@@ -21,6 +21,7 @@ UFC - Campus Quixadá, 2024
 - **Banco de Dados:** Firebase Firestore Database
 - **Autenticação:** Firebase Authentication
 - **Estilização:** CSS / Bootstrap
+- **Figma:** [Draft no Figma](https://www.figma.com/design/NWVK4TpoKELPIxm9M1BR11/Untitled?t=zHSPIH9NbSiVXaUt-0)
 
 ### *Contribuidores*
 
