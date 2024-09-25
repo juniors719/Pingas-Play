@@ -1,4 +1,4 @@
-![Logo PingasPlay](./pingaplay/src/images/logo-pingaplay-white-home.png)
+![Logo PingasPlay](./pingaplay/src/images/logo-pingaplay-white-home.png) ![Fiveicon](./pingaplay/public/favicon.ico) 
 
 
 # PingasPlay - DevWeb - Project
