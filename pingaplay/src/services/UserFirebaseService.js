@@ -8,14 +8,6 @@ import {
     where,
 } from "firebase/firestore";
 
-// user:
-// - userId: string(id de autenticacao)
-// - nome: string
-// - sobrenome: string
-// - dataNascimento: Timestamp
-// - sexo: map boolean
-// - pontos: number
-
 class UserFirebaseService {
     // listar
     static async listar(db, callback) {

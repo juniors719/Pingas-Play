@@ -8,13 +8,11 @@ import "./NextCompetitions.css";
 const CompetitionItemHome = ({ competition }) => {
     return (
         <div className="listagem-campeonato">
-            <div className="text-wrapper">{competition.título}</div>
+            <div className="text-wrapper">{competition.titulo}</div>
             <div className="nome-organizador">
                 {competition.nomeorganizador}
             </div>
-            <div className="data-do-campeonato">
-                {competition.data.toLocaleDateString()}
-            </div>
+            <div className="data-do-campeonato">{competition.data}</div>
         </div>
     );
 };

@@ -1,58 +1,80 @@
 import { getFirestore } from "firebase/firestore"; // Certifique-se de importar Firestore corretamente
 import CompetitionFirebaseService from "../../services/CompetitionFirebaseService";
+import UserFirebaseService from "../../services/UserFirebaseService";
 import FirebaseContext from "../../utils/FirabaseContext";
+import { auth } from "../../utils/FirebaseConfig";
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 const CadastrarCompeticao = () => {
+    const firebase = useContext(FirebaseContext);
+    const [user, setUser] = useState(null); // Estado para armazenar o usuário
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
     const [local, setLocal] = useState("");
     const [data, setData] = useState("");
     const [erro, setErro] = useState("");
     const [sucesso, setSucesso] = useState("");
-    const { user } = useContext(FirebaseContext);
-    const db = getFirestore(); // Pega a instância do Firestore
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            if (!user) {
-                throw new Error("Usuário não autenticado!");
+    useEffect(() => {
+        // Verifica o estado de autenticação e busca os dados do usuário
+        const unsubscribe = auth.onAuthStateChanged((loggedUser) => {
+            if (loggedUser) {
+                UserFirebaseService.getUserbyUID(
+                    firebase.getFirestoreDB(),
+                    loggedUser.uid,
+                    (userData) => {
+                        if (userData) {
+                            setUser(userData); // Atualiza o estado com os dados do usuário
+                        } else {
+                            setErro("Usuário não encontrado.");
+                        }
+                    }
+                );
+            } else {
+                setErro("Usuário não autenticado.");
             }
+        });
 
-            const competicao = {
-                IDorganizador: user.getUserbyId(), // Passar o ID do organizador corretamente
-                titulo,
-                descricao,
-                local,
-                data, // A data será uma string e convertida no serviço
-            };
+        // Limpar o listener ao desmontar o componente
+        return () => unsubscribe();
+    }, [firebase]);
 
-            await CompetitionFirebaseService.adicionar(db, competicao, (id) => {
-                if (id) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (!user) {
+            setErro("Não foi possível identificar o organizador.");
+            return;
+        }
+
+        const novaCompeticao = {
+            titulo,
+            descricao,
+            local,
+            data,
+            IDOrganizador: user.id, // Garante que o organizador é o usuário logado
+            IDParticipantes: [], // Inicializa a lista de participantes vazia
+        };
+
+        console.log("Competição a ser adicionada:", novaCompeticao);
+
+        CompetitionFirebaseService.adicionar(
+            firebase.getFirestoreDB(),
+            novaCompeticao,
+            (competicaoSimples) => {
+                if (competicaoSimples) {
                     setSucesso("Competição cadastrada com sucesso!");
                 } else {
                     setErro("Erro ao cadastrar competição.");
                 }
-            });
-
-            setTitulo("");
-            setDescricao("");
-            setLocal("");
-            setData("");
-
-        } catch (error) {
-            console.error("Erro ao cadastrar competição: ", error);
-            setErro("Erro ao cadastrar competição. Tente novamente.");
-            setSucesso("");
-        }
+            }
+        );
     };
 
     return (
         <div>
-            <h1>Cadastrar Competição</h1> 
+            <h1>Cadastrar Competição</h1>
 
             {/* Exibir mensagens de sucesso ou erro */}
             {sucesso && <div className="alert alert-success">{sucesso}</div>}
@@ -61,45 +83,47 @@ const CadastrarCompeticao = () => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="titulo">Título</label>
-                    <input 
-                        type="text" 
-                        className="form-control" 
+                    <input
+                        type="text"
+                        className="form-control"
                         id="titulo"
                         value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)} 
+                        onChange={(e) => setTitulo(e.target.value)}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="descricao">Descrição</label>
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        id="descricao" 
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="descricao"
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="local">Local</label>
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        id="local" 
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="local"
                         value={local}
-                        onChange={(e) => setLocal(e.target.value)} 
+                        onChange={(e) => setLocal(e.target.value)}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="data">Data</label>
-                    <input 
-                        type="date" 
-                        className="form-control" 
-                        id="data" 
+                    <input
+                        type="date"
+                        className="form-control"
+                        id="data"
                         value={data}
-                        onChange={(e) => setData(e.target.value)} 
+                        onChange={(e) => setData(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Cadastrar</button>
+                <button type="submit" className="btn btn-primary">
+                    Cadastrar
+                </button>
             </form>
         </div>
     );

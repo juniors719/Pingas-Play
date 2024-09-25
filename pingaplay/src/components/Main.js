@@ -59,8 +59,12 @@ const Main = () => {
                             },
                             {
                                 path: "/competicoes/cadastrar",
-                                element: <CadastrarCompeticao/>,
-                            }
+                                element: <CadastrarCompeticao />,
+                            },
+                            {
+                                path: "/meus-dados",
+                                element: <MeusDados />,
+                            },
                         ],
                     },
                     {
@@ -75,11 +79,6 @@ const Main = () => {
                         path: "/adicionar-dados",
                         element: <AdicionarDados />,
                     },
-                    {
-                        path: "/meus-dados",
-                        element: <MeusDados />,
-
-                    }
                 ])}
             />
         </FirebaseContext.Provider>
