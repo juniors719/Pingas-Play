@@ -26,7 +26,7 @@ PingasPlay é um site dedicado ao tênis de mesa, permitindo a criação de cont
 - [Djalma Júnior](https://www.linkedin.com/in/djalma-junior-dev/)
 - [Laura Lobo](https://www.linkedin.com/in/lauralobovm/)
 - [Maria Eduarda](https://www.linkedin.com/in/lauralobovm/)
-- Patrick
+- [Patrick](https://github.com/Crownka)
 
 
 
