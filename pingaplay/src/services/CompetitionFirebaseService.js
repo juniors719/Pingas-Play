@@ -4,10 +4,9 @@ import {
     addDoc,
     doc,
     getDoc,
-    setDoc,
-    deleteDoc,
     query,
-    Timestamp,
+    where,
+    deleteDoc,
 } from "firebase/firestore";
 
 class CompetitionFirebaseService {
@@ -54,6 +53,33 @@ class CompetitionFirebaseService {
         }
     }
 
+    static async listarCompeticoesOrganizador(db, callback, idOrganizador) {
+        const c = collection(db, "competicoes");
+        const q = query(c, where("IDOrganizador", "==", idOrganizador));
+
+        try {
+            const querySnapshot = await getDocs(q);
+            const competicoes = [];
+
+            for (const competicao of querySnapshot.docs) {
+                const data = competicao.data();
+                // Formata os dados da competição
+                const competicaoFormatada = {
+                    id: competicao.id,
+                    ...data,
+                    data: data.data || "Data não fornecida", // Usa o campo de string diretamente
+                };
+
+                competicoes.push(competicaoFormatada);
+            }
+
+            callback(competicoes);
+        } catch (error) {
+            console.error("Error fetching competitions: ", error);
+            callback([]);
+        }
+    }
+
     static async adicionar(db, competicao, callback) {
         try {
             const c = collection(db, "competicoes");
@@ -81,6 +107,16 @@ class CompetitionFirebaseService {
         } catch (error) {
             console.error(error);
             callback(null);
+        }
+    }
+
+    static async deletar(db, id, callback) {
+        try {
+            await deleteDoc(doc(db, "competicoes", id));
+            callback(true);
+        } catch (error) {
+            console.error("Error deleting competition: ", error);
+            callback(false);
         }
     }
 }

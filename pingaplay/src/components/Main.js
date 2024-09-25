@@ -22,6 +22,7 @@ import Scoreboard from "./placar/ScoreBoard";
 import AdicionarDados from "./usuario/AdicionarDados";
 import MeusDados from "./usuario/MeusDados";
 import CadastrarCompeticao from "./competicoes/CadastrarCompeticao";
+import MinhasCompeticoes from "./competicoes/MinhasCompeticoes";
 
 const Main = () => {
     const [logged, setLogged] = useState(null);
@@ -64,6 +65,10 @@ const Main = () => {
                             {
                                 path: "/meus-dados",
                                 element: <MeusDados />,
+                            },
+                            {
+                                path: "/competicoes/minhas-competicoes",
+                                element: <MinhasCompeticoes />,
                             },
                         ],
                     },

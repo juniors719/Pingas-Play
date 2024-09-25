@@ -28,7 +28,7 @@ const ListarCompeticoes = () => {
     };
 
     return (
-        <div>
+        <div className="p-5">
             <h1>Listar competições</h1>
             <div>
                 <table className="table table-striped">

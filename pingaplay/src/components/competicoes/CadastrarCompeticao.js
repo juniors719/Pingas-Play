@@ -73,7 +73,7 @@ const CadastrarCompeticao = () => {
     };
 
     return (
-        <div>
+        <div className="p-5">
             <h1>Cadastrar Competição</h1>
 
             {/* Exibir mensagens de sucesso ou erro */}
